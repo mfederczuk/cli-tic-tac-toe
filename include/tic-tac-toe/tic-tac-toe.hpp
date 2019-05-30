@@ -46,7 +46,8 @@ namespace tic_tac_toe {
 			enum class pos : unsigned short int {
 				UPPER_LEFT,  UPPER_MIDDLE, UPPER_RIGHT,
 				MIDDLE_LEFT, MIDDLE,       MIDDLE_RIGHT,
-				LOWER_LEFT,  LOWER_MIDDLE, LOWER_RIGHT
+				LOWER_LEFT,  LOWER_MIDDLE, LOWER_RIGHT,
+				INVALID
 			};
 			typedef pos pos_t;
 
@@ -156,9 +157,6 @@ namespace tic_tac_toe {
 			 */
 			std::string str() const;
 
-		private:
-			unsigned short int _pos_to_int(pos_t p) const;
-
 		public:
 			/**
 			 * Turns the entered symbol SYMBOL into a char and returns it.
@@ -187,6 +185,35 @@ namespace tic_tac_toe {
 			 * Since: 2019-05-30
 			 */
 			static symbol_t chartosym(char ch);
+
+			/**
+			 * Turns the entered position POS into an unsigned short int and
+			 * returns it.
+			 *
+			 * Param tic_tac_toe::field::pos_t pos:
+			 *     The position to convert to a int.
+			 *
+			 * Return: unsigned short int
+			 *     The converted position.
+			 *
+			 * Since: 2019-05-30
+			 */
+			static unsigned short int postoint(pos_t pos);
+			/**
+			 * Turns the entered unsigned short int I into a position and
+			 * returns it.
+			 *
+			 * If the int can't be converted, then pos::INVALID will be returned.
+			 *
+			 * Param unsigned short int i:
+			 *     The int to convert to a position.
+			 *
+			 * Return: tic_tac_toe::field::pos_t
+			 *     The converted int.
+			 *
+			 * Since: 2019-05-30
+			 */
+			static pos_t intopos(unsigned short int i);
 
 	};
 	typedef field field_t;

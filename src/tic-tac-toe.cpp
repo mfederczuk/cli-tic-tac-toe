@@ -27,16 +27,14 @@ namespace tic_tac_toe {
 	/* public */
 
 	field::symbol_t field::get_symbol(field::pos_t pos) const {
-		return symbols[_pos_to_int(pos)];
+		return symbols[postoint(pos)];
 	}
-
 	void field::set_symbol(field::symbol_t symbol, field::pos_t pos) {
 		if(symbol == field::symbol::INVALID)
 			throw new std::invalid_argument("set_symbol: field::symbol::INVALID is not allowed");
 
-		symbols[_pos_to_int(pos)] = symbol;
+		symbols[postoint(pos)] = symbol;
 	}
-
 	void field::fill(field::symbol_t symbol) {
 		if(symbol == field::symbol::INVALID)
 			throw new std::invalid_argument("fill: field::symbol::INVALID is not allowed");
@@ -45,7 +43,6 @@ namespace tic_tac_toe {
 			symbols[i] = symbol;
 		}
 	}
-
 	void field::clear() {
 		for(size_t i = 0; i < 9; ++i) {
 			symbols[i] = symbol::NONE;
@@ -91,7 +88,6 @@ namespace tic_tac_toe {
 			return symbol::NONE;
 		}
 	}
-
 	bool field::checkstalemate() const {
 		// if somebody already won it's not a stalemate
 		if(checkwin() != symbol::NONE) return false;
@@ -121,7 +117,6 @@ namespace tic_tac_toe {
 
 		return d;
 	}
-
 	std::array<std::array<char, 3>, 3> field::char_data() const {
 		std::array<std::array<char, 3>, 3> d;
 
@@ -153,29 +148,6 @@ namespace tic_tac_toe {
 	}
 
 	/* ====================================================================== */
-	/* private */
-
-	unsigned short int field::_pos_to_int(field::pos_t p) const {
-		// *INDENT-OFF*
-		switch(p) {
-		case field::pos::UPPER_LEFT:   return 0;
-		case field::pos::UPPER_MIDDLE: return 1;
-		case field::pos::UPPER_RIGHT:  return 2;
-
-		case field::pos::MIDDLE_LEFT:  return 3;
-		case field::pos::MIDDLE:       return 4;
-		case field::pos::MIDDLE_RIGHT: return 5;
-
-		case field::pos::LOWER_LEFT:   return 6;
-		case field::pos::LOWER_MIDDLE: return 7;
-		case field::pos::LOWER_RIGHT:  return 8;
-
-		default: return -1;
-		}
-		// *INDENT-ON*
-	}
-
-	/* ====================================================================== */
 	/* static */
 
 	char field::symtochar(field::symbol_t symbol) {
@@ -189,7 +161,6 @@ namespace tic_tac_toe {
 		}
 		// *INDENT-ON*
 	}
-
 	field::symbol_t field::chartosym(char ch) {
 		// *INDENT-OFF*
 		switch(std::tolower(ch)) {
@@ -197,6 +168,46 @@ namespace tic_tac_toe {
 		case 'x': return field::symbol::X;
 		case 'o': return field::symbol::O;
 		default:  return field::symbol::INVALID;
+		}
+		// *INDENT-ON*
+	}
+
+	unsigned short int field::postoint(field::pos_t pos) {
+		// *INDENT-OFF*
+		switch(pos) {
+		case field::pos::UPPER_LEFT:   return 0;
+		case field::pos::UPPER_MIDDLE: return 1;
+		case field::pos::UPPER_RIGHT:  return 2;
+
+		case field::pos::MIDDLE_LEFT:  return 3;
+		case field::pos::MIDDLE:       return 4;
+		case field::pos::MIDDLE_RIGHT: return 5;
+
+		case field::pos::LOWER_LEFT:   return 6;
+		case field::pos::LOWER_MIDDLE: return 7;
+		case field::pos::LOWER_RIGHT:  return 8;
+
+		case field::pos::INVALID:
+		default: return -1;
+		}
+		// *INDENT-ON*
+	}
+	field::pos_t field::intopos(unsigned short int i) {
+		// *INDENT-OFF*
+		switch(i) {
+		case 0: return field::pos::UPPER_LEFT;
+		case 1: return field::pos::UPPER_MIDDLE;
+		case 2: return field::pos::UPPER_RIGHT;
+
+		case 3: return field::pos::MIDDLE_LEFT;
+		case 4: return field::pos::MIDDLE;
+		case 5: return field::pos::MIDDLE_RIGHT;
+
+		case 6: return field::pos::LOWER_LEFT;
+		case 7: return field::pos::LOWER_MIDDLE;
+		case 8: return field::pos::LOWER_RIGHT;
+
+		default: return field::pos::INVALID;
 		}
 		// *INDENT-ON*
 	}
