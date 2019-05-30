@@ -13,102 +13,127 @@
 
 namespace tic_tac_toe {
 
-	typedef unsigned short int symbol_t;
-	inline namespace symbol {
-		constexpr symbol_t NONE = 0;
-		constexpr symbol_t X    = 1;
-		constexpr symbol_t O    = 2;
-
-		inline bool _valid_symbol(symbol_t symbol) {
-			return (symbol == symbol::NONE
-			        || symbol == symbol::X || symbol == symbol::O);
-		}
-	}
-
-	typedef unsigned short int pos_t;
-	inline namespace pos {
-		constexpr pos_t UPPER_LEFT   = 0;
-		constexpr pos_t UPPER_MIDDLE = 1;
-		constexpr pos_t UPPER_RIGHT  = 2;
-		constexpr pos_t MIDDLE_LEFT  = 3;
-		constexpr pos_t MIDDLE       = 4;
-		constexpr pos_t MIDDLE_RIGHT = 5;
-		constexpr pos_t LOWER_LEFT   = 6;
-		constexpr pos_t LOWER_MIDDLE = 7;
-		constexpr pos_t LOWER_RIGHT  = 8;
-
-		constexpr pos_t MIN = UPPER_LEFT;
-		constexpr pos_t MAX = LOWER_RIGHT;
-
-		inline bool _valid_pos(pos_t pos) {
-			return (pos >= pos::MIN && pos <= pos::MAX);
-		}
-	}
-
-	typedef std::array<symbol_t, 9> field_t;
-	inline namespace field {
-		inline bool _valid_field(const field_t& field) {
-			for(size_t i = 0, s = field.size(); i < s; ++i) {
-				if(!_valid_symbol(field[i])) return false;
-			}
-			return true;
-		}
-	}
-
 	/**
-	 * Returns the symbol of the FIELD at POS.
-	 *
-	 * Param const field_t& field:
-	 *     The field to get a symbol from.
-	 *
-	 * Param pos_t pos:
-	 *     The position to get the symbol from.
-	 *
-	 * Return: symbol_t
-	 *     The symbol of FIELD at POS.
+	 * Class for a Tic-Tac-Toe field.
 	 *
 	 * Since: 2019-05-30
+	 * LastEdit: 2019-05-30
 	 */
-	symbol_t get_symbol(const field_t& field, pos_t pos);
-	/**
-	 * Sets SYMBOL to FIELD at POS.
-	 *
-	 * Param tic_tac_toe::symbol_t symbol:
-	 *     The symbol to set.
-	 *
-	 * Param tic_tac_toe::field_t& field:
-	 *     Reference to a field to set the symbol in.
-	 *
-	 * Param tic_tac_toe::pos_t pos:
-	 *     The position to set the symbol to.
-	 *
-	 * Since: 2019-05-30
-	 */
-	void set_symbol(symbol_t symbol, field_t& field, pos_t pos);
-	/**
-	 * Checks if a symbol has won.
-	 *
-	 * Param const tic_tac_toe::field_t& field:
-	 *     The field to check for a win.
-	 *
-	 * Return: tic_tac_toe::symbol_t
-	 *     The symbol that has won, or NONE if no symbol has won yet.
-	 *
-	 * Since: 2019-05-30
-	 */
-	symbol_t checkwin(const field_t& field);
-	/**
-	 * Checks if the field is in a stalemate.
-	 *
-	 * Param const tic_tac_toe::field_t& field:
-	 *     The field to check in.
-	 *
-	 * Return: bool
-	 *     true if the field is in a stalemate, false if otherwise.
-	 *
-	 * Since: 2019-05-30
-	 */
-	bool checkstalemate(const field_t& field);
+	class field {
+
+		public:
+			/**
+			 * The three symbols that can be placed on the Tic-Tac-Toe field:
+			 * NONE, X and O
+			 *
+			 * Since: 2019-05-30
+			 * LastEdit: 2019-05-30
+			 */
+			enum class symbol : unsigned short int {
+				NONE,
+				X, O
+			};
+			typedef symbol symbol_t;
+
+			/**
+			 * Available positions on the field.
+			 *
+			 * Since: 2019-05-30
+			 * LastEdit: 2019-05-30
+			 */
+			enum class pos : unsigned short int {
+				UPPER_LEFT,  UPPER_MIDDLE, UPPER_RIGHT,
+				MIDDLE_LEFT, MIDDLE,       MIDDLE_RIGHT,
+				LOWER_LEFT,  LOWER_MIDDLE, LOWER_RIGHT
+			};
+			typedef pos pos_t;
+
+		private:
+			symbol_t symbols[9];
+
+		public:
+			field(symbol_t fillsym = symbol::NONE);
+
+			/**
+			 * Returns the symbol at position POS.
+			 *
+			 * Param tic_tac_toe::field::pos_t pos:
+			 *     The position to get the symbol from.
+			 *
+			 * Return: tic_tac_toe::field::symbol_t
+			 *     The symbol at position POS.
+			 *
+			 * Since: 2019-05-30
+			 */
+			symbol_t get_symbol(pos_t pos) const;
+			/**
+			 * Overrides the symbol at position POS with SYMBOL.
+			 *
+			 * Param tic_tac_toe::field::symbol_t symbol:
+			 *     The new value of the symbol.
+			 *
+			 * Param tic_tac_toe::field::pos_t pos:
+			 *     The position to set the new symbol at.
+			 *
+			 * Since: 2019-05-30
+			 */
+			void set_symbol(symbol_t symbol, pos_t pos);
+			/**
+			 * Sets the symbol at every position to SYMBOL.
+			 *
+			 * Param tic_tac_toe::field::symbol_t symbol:
+			 *     The symbol to fill the field with.
+			 *
+			 * Since: 2019-05-30
+			 */
+			void fill(symbol_t symbol);
+			/**
+			 * Fills the field with symbol symbol::NONE.
+			 *
+			 * Since: 2019-05-30
+			 */
+			void clear();
+
+			/**
+			 * Checks with symbol is in a winning position, returns either
+			 * symbol::X, symbol::O or symbol::NONE.
+			 *
+			 * Return: tic_tac_toe::field::symbol_t
+			 *     Which symbol is in a winning position, or symbol::NONE if
+			 *     none has won yet.
+			 *
+			 * Since: 2019-05-30
+			 */
+			symbol_t checkwin() const;
+			/**
+			 * Checks if the field is in a stalemate.
+			 *
+			 * Return: bool
+			 *     true if the field is in a stalemate, false if otherwise.
+			 *
+			 * Since: 2019-05-30
+			 */
+			bool checkstalemate() const;
+
+		private:
+			unsigned short int _pos_to_int(pos_t p) const;
+
+		public:
+			/**
+			 * Turns the entered symbol SYMBOL into a char and returns it.
+			 *
+			 * Param tic_tac_toe::field::symbol_t symbol:
+			 *     The symbol to convert to a char.
+			 *
+			 * Return: char
+			 *     The converted symbol.
+			 *
+			 * Since: 2019-05-30
+			 */
+			static char symtochar(symbol_t symbol);
+
+	};
+	typedef field field_t;
 
 }
 
