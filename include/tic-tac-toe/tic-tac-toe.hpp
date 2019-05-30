@@ -56,6 +56,21 @@ namespace tic_tac_toe {
 	}
 
 	/**
+	 * Returns the symbol of the FIELD at POS.
+	 *
+	 * Param const field_t& field:
+	 *     The field to get a symbol from.
+	 *
+	 * Param pos_t pos:
+	 *     The position to get the symbol from.
+	 *
+	 * Return: symbol_t
+	 *     The symbol of FIELD at POS.
+	 *
+	 * Since: 2019-05-30
+	 */
+	symbol_t get_symbol(const field_t& field, pos_t pos);
+	/**
 	 * Sets SYMBOL to FIELD at POS.
 	 *
 	 * Param tic_tac_toe::symbol_t symbol:
