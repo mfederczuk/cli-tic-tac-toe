@@ -61,15 +61,15 @@ namespace tic_tac_toe {
 	 * Param tic_tac_toe::symbol_t symbol:
 	 *     The symbol to set.
 	 *
-	 * Param tic_tac_toe::pos_t pos:
-	 *     The position to set the symbol to.
-	 *
 	 * Param tic_tac_toe::field_t& field:
 	 *     Reference to a field to set the symbol in.
 	 *
+	 * Param tic_tac_toe::pos_t pos:
+	 *     The position to set the symbol to.
+	 *
 	 * Since: 2019-05-30
 	 */
-	void set_symbol(symbol_t symbol, pos_t pos, field_t& field);
+	void set_symbol(symbol_t symbol, field_t& field, pos_t pos);
 	/**
 	 * Checks if a symbol has won.
 	 *
