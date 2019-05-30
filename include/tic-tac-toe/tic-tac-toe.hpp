@@ -52,6 +52,14 @@ namespace tic_tac_toe {
 			symbol_t symbols[9];
 
 		public:
+			/**
+			 * Constructs a new field object.
+			 *
+			 * Param tic_tac_toe::field::symbol_t fillsym = tic_tac_toe::field::symbol::NONE:
+			 *     The symbol to initially fill the field with.
+			 *
+			 * Since: 2019-05-30
+			 */
 			field(symbol_t fillsym = symbol::NONE);
 
 			/**
