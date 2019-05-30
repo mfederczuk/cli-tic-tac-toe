@@ -17,10 +17,11 @@ namespace tic_tac_toe {
 	inline namespace symbol {
 		constexpr symbol_t NONE = 0;
 		constexpr symbol_t X    = 1;
-		constexpr symbol_t Y    = 2;
+		constexpr symbol_t O    = 2;
 
 		inline bool _valid_symbol(symbol_t symbol) {
-			return (symbol == NONE || symbol == X || symbol == Y);
+			return (symbol == symbol::NONE
+			        || symbol == symbol::X || symbol == symbol::O);
 		}
 	}
 
