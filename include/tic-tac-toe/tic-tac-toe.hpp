@@ -123,6 +123,27 @@ namespace tic_tac_toe {
 			 */
 			bool checkstalemate() const;
 
+			/**
+			 * Returns a two-dimensional std::array with all symbols of the
+			 * field.
+			 *
+			 * Return: std::array<std::array<tic_tac_toe::field::symbol_t, 3>, 3>
+			 *     A two-dimensional std::array with all symbols.
+			 *
+			 * Since: 2019-05-30
+			 */
+			std::array<std::array<symbol_t, 3>, 3> data() const;
+			/**
+			 * Returns a two-dimensional std::array with all symbols of the
+			 * field, converted to chars using the symtochar(symbol_t) function.
+			 *
+			 * Return: std::array<std::array<char, 3>, 3>
+			 *     A two-dimensional std::array with all symbols as chars.
+			 *
+			 * Since: 2019-05-30
+			 */
+			std::array<std::array<char, 3>, 3> char_data() const;
+
 		private:
 			unsigned short int _pos_to_int(pos_t p) const;
 

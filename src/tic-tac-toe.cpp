@@ -21,6 +21,9 @@ namespace tic_tac_toe {
 		fill(fillsym);
 	}
 
+	/* ====================================================================== */
+	/* public */
+
 	field::symbol_t field::get_symbol(field::pos_t pos) const {
 		return symbols[_pos_to_int(pos)];
 	}
@@ -93,6 +96,45 @@ namespace tic_tac_toe {
 		return false;
 	}
 
+	std::array<std::array<field::symbol_t, 3>, 3> field::data() const {
+		std::array<std::array<field::symbol_t, 3>, 3> d;
+
+		d[0][0] = symbols[0];
+		d[1][0] = symbols[1];
+		d[2][0] = symbols[2];
+
+		d[0][1] = symbols[3];
+		d[1][1] = symbols[4];
+		d[2][1] = symbols[5];
+
+		d[0][2] = symbols[6];
+		d[1][2] = symbols[7];
+		d[2][2] = symbols[8];
+
+		return d;
+	}
+
+	std::array<std::array<char, 3>, 3> field::char_data() const {
+		std::array<std::array<char, 3>, 3> d;
+
+		d[0][0] = symtochar(symbols[0]);
+		d[1][0] = symtochar(symbols[1]);
+		d[2][0] = symtochar(symbols[2]);
+
+		d[0][1] = symtochar(symbols[3]);
+		d[1][1] = symtochar(symbols[4]);
+		d[2][1] = symtochar(symbols[5]);
+
+		d[0][2] = symtochar(symbols[6]);
+		d[1][2] = symtochar(symbols[7]);
+		d[2][2] = symtochar(symbols[8]);
+
+		return d;
+	}
+
+	/* ====================================================================== */
+	/* private */
+
 	unsigned short int field::_pos_to_int(field::pos_t p) const {
 		// *INDENT-OFF*
 		switch(p) {
@@ -112,6 +154,9 @@ namespace tic_tac_toe {
 		}
 		// *INDENT-ON*
 	}
+
+	/* ====================================================================== */
+	/* static */
 
 	char field::symtochar(field::symbol_t symbol) {
 		// *INDENT-OFF*
