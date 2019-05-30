@@ -10,6 +10,7 @@
 #define _TIC_TAC_TOE_H
 
 #include <array>
+#include <string>
 
 namespace tic_tac_toe {
 
@@ -143,6 +144,16 @@ namespace tic_tac_toe {
 			 * Since: 2019-05-30
 			 */
 			std::array<std::array<char, 3>, 3> char_data() const;
+
+			/**
+			 * Returns a string representation of this field.
+			 *
+			 * Return: std::string
+			 *     A pretty string, showing all symbols.
+			 *
+			 * Since: 2019-05-30
+			 */
+			std::string str() const;
 
 		private:
 			unsigned short int _pos_to_int(pos_t p) const;

@@ -9,7 +9,6 @@
 
 #include <tic-tac-toe/tic-tac-toe.hpp>
 #include <stdexcept>
-#include <string>
 #include <regex>
 #include <tic-tac-toe/utils.hpp>
 
@@ -130,6 +129,18 @@ namespace tic_tac_toe {
 		d[2][2] = symtochar(symbols[8]);
 
 		return d;
+	}
+
+	string field::str() const {
+		std::array<std::array<char, 3>, 3> cd = char_data();
+
+		string str;
+		str = str + cd[0][0] + " | " + cd[1][0] + " | " + cd[2][0] + '\n';
+		str += "--+---+--\n";
+		str = str + cd[0][1] + " | " + cd[1][1] + " | " + cd[2][1] + '\n';
+		str += "--+---+--\n";
+		str = str + cd[0][2] + " | " + cd[1][2] + " | " + cd[2][2] + '\n';
+		return str;
 	}
 
 	/* ====================================================================== */
