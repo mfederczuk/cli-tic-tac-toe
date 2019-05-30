@@ -1,6 +1,8 @@
 # src/subdir.mk
 
-OBJECTS += bin/utils.o
+OBJECTS += \
+bin/tic-tac-toe.o \
+bin/utils.o
 
 bin/%.o: src/%.cpp
 	$(info Building file '$@' ...)
