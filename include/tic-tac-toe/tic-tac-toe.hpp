@@ -18,6 +18,10 @@ namespace tic_tac_toe {
 		constexpr symbol_t NONE = 0;
 		constexpr symbol_t X    = 1;
 		constexpr symbol_t Y    = 2;
+
+		inline bool _valid_symbol(symbol_t symbol) {
+			return (symbol == NONE || symbol == X || symbol == Y);
+		}
 	}
 
 	typedef unsigned short int pos_t;
@@ -34,9 +38,21 @@ namespace tic_tac_toe {
 
 		constexpr pos_t MIN = UPPER_LEFT;
 		constexpr pos_t MAX = LOWER_RIGHT;
+
+		inline bool _valid_pos(pos_t pos) {
+			return (pos >= pos::MIN && pos <= pos::MAX);
+		}
 	}
 
 	typedef std::array<symbol_t, 9> field_t;
+	inline namespace field {
+		inline bool _valid_field(const field_t& field) {
+			for(size_t i = 0, s = field.size(); i < s; ++i) {
+				if(!_valid_symbol(field[i])) return false;
+			}
+			return true;
+		}
+	}
 
 	/**
 	 * Sets SYMBOL to FIELD at POS.
