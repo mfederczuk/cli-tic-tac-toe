@@ -5,7 +5,7 @@ OBJECTS +=
 bin/%.o: src/%.cpp
 	$(info Building file '$@' ...)
 	@mkdir -p 'bin'
-	@$(CXX) -Iinclude -c '$<' -o '$@'
+	@$(CXX) -std=c++14 -Iinclude -c '$<' -o '$@'
 #bin/%.o
 
 src/%.cpp:
