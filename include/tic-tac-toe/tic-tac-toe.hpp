@@ -31,6 +31,9 @@ namespace tic_tac_toe {
 		constexpr pos_t LOWER_LEFT   = 6;
 		constexpr pos_t LOWER_MIDDLE = 7;
 		constexpr pos_t LOWER_RIGHT  = 8;
+
+		constexpr pos_t MIN = UPPER_LEFT;
+		constexpr pos_t MAX = LOWER_RIGHT;
 	}
 
 	typedef std::array<symbol_t, 9> field_t;
