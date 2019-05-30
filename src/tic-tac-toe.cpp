@@ -97,7 +97,7 @@ namespace tic_tac_toe {
 			if(symbols[i] == symbol::NONE) return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	std::array<std::array<field::symbol_t, 3>, 3> field::data() const {
