@@ -5,7 +5,7 @@ include src/subdir.mk
 
 all: $(OBJECTS)
 	$(info Building executable '$(TARGET)' ...)
-	@$(CXX) $(OBJECTS) -o '$(TARGET)'
+	@$(CXX) $(OBJECTS) -o '$(TARGET)' -lncurses
 #all
 
 clean:

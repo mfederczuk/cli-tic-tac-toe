@@ -1,6 +1,7 @@
 # src/subdir.mk
 
 OBJECTS += \
+bin/main.o \
 bin/tic-tac-toe.o \
 bin/utils.o
 
