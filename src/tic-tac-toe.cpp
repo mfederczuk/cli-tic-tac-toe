@@ -17,6 +17,9 @@ using std::string;
 namespace tic_tac_toe {
 
 	field::field(field::symbol_t fillsym) {
+		if(fillsym == field::symbol::INVALID)
+			throw new std::invalid_argument("field: field::symbol::INVALID is not allowed");
+
 		fill(fillsym);
 	}
 
@@ -28,10 +31,16 @@ namespace tic_tac_toe {
 	}
 
 	void field::set_symbol(field::symbol_t symbol, field::pos_t pos) {
+		if(symbol == field::symbol::INVALID)
+			throw new std::invalid_argument("set_symbol: field::symbol::INVALID is not allowed");
+
 		symbols[_pos_to_int(pos)] = symbol;
 	}
 
 	void field::fill(field::symbol_t symbol) {
+		if(symbol == field::symbol::INVALID)
+			throw new std::invalid_argument("fill: field::symbol::INVALID is not allowed");
+
 		for(size_t i = 0; i < 9; ++i) {
 			symbols[i] = symbol;
 		}
@@ -175,7 +184,19 @@ namespace tic_tac_toe {
 		case field::symbol::NONE: return ' ';
 		case field::symbol::X:    return 'X';
 		case field::symbol::O:    return 'O';
+		case field::symbol::INVALID:
 		default: return '\0';
+		}
+		// *INDENT-ON*
+	}
+
+	field::symbol_t field::chartosym(char ch) {
+		// *INDENT-OFF*
+		switch(std::tolower(ch)) {
+		case ' ': return field::symbol::NONE;
+		case 'x': return field::symbol::X;
+		case 'o': return field::symbol::O;
+		default:  return field::symbol::INVALID;
 		}
 		// *INDENT-ON*
 	}

@@ -25,14 +25,15 @@ namespace tic_tac_toe {
 		public:
 			/**
 			 * The three symbols that can be placed on the Tic-Tac-Toe field:
-			 * NONE, X and O
+			 * NONE, X and O and INVALID, which is rarely used.
 			 *
 			 * Since: 2019-05-30
 			 * LastEdit: 2019-05-30
 			 */
 			enum class symbol : unsigned short int {
 				NONE,
-				X, O
+				X, O,
+				INVALID
 			};
 			typedef symbol symbol_t;
 
@@ -171,6 +172,21 @@ namespace tic_tac_toe {
 			 * Since: 2019-05-30
 			 */
 			static char symtochar(symbol_t symbol);
+			/**
+			 * Turns the entered char CH into a symbol and returns it.
+			 *
+			 * If the char can't be converted, then symbol::INVALID will be
+			 * returned.
+			 *
+			 * Param char ch:
+			 *     The char to convert to a symbol.
+			 *
+			 * Return: tic_tac_toe::field::symbol_t
+			 *     The converted char.
+			 *
+			 * Since: 2019-05-30
+			 */
+			static symbol_t chartosym(char ch);
 
 	};
 	typedef field field_t;
