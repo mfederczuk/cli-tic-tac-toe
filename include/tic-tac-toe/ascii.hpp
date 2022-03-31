@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MPL-2.0 AND Apache-2.0
+ * Copyright (c) 2019 Michael Federczuk
+ */
 // include/tic-tac-toe/ascii.hpp
 /*
  * Constants of ASCII control characters.

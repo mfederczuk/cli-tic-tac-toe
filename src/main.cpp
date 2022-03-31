@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: MPL-2.0 AND Apache-2.0
+ * Copyright (c) 2019 Michael Federczuk
+ */
+
 #include <tic-tac-toe/tic-tac-toe.hpp>
 #include <ncurses.h>
 #include <tic-tac-toe/ascii.hpp>

@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: MPL-2.0 AND Apache-2.0
+ * Copyright (c) 2019 Michael Federczuk
+ */
 // include/tic-tac-toe/tic-tac-toe.hpp
 /**
  * Main header file for the Tic-Tac-Toe game.
