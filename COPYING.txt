@@ -12,6 +12,10 @@ The individual licenses, used in this repository, can be found in the 'LICENSES'
         Short identifier: Apache-2.0
         Text file:        LICENSES/Apache-2.0.txt
 
+        Full name:        Creative Commons Attribution Share Alike 4.0 International
+        Short identifier: CC-BY-SA-4.0
+        Text file:        LICENSES/CC-BY-SA-4.0.txt
+
         Full name:        Creative Commons Zero v1.0 Universal
         Short identifier: CC0-1.0
         Text file:        LICENSES/CC0-1.0.txt
